@@ -3,8 +3,8 @@ pipeline{
     stages {
         stage('init'){
             steps {
-                sh 'docker stop nodejs-project || true'
-                sh 'docker rm nodejs-project || true'
+                sh "docker rmi -f \$(docker images) || true"
+                sh "docker rm -f \$(docker ps -aq) || true"
             }
         }
         stage('build'){
